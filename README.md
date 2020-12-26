@@ -18,13 +18,13 @@
  
  **The service discovery and category lists:** 
 <p style="vertical-align:top;white-space:nowrap;">
-<img src="gfx/sd.png" width="320" style="border:1px blue solid"/>
-<img src="gfx/sd_list.png" width="350" style="border:1px blue solid"/>
+<img src="gfx/sd.png" width="320"/>
+<img src="gfx/sd_list.png" width="350"/>
 </p>
 
 **The search window:**
 <p style="align:center">
-<img src="gfx/search.png" width="600" style="border:1px blue solid"/>
+<img src="gfx/search.png" width="600"/>
 </p>
 
 **BUGS & REQUESTS:**
