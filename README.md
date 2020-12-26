@@ -1,5 +1,7 @@
  Radio-Browser.info Lua Plugins for VLC
 
+<img src="gfx/Radio-Browser.png" width="150" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
+
  Copyright © 2020 Andrew Jackson (https://github.com/ceever ... ceever@web.de)
 
  This program is free software; you can redistribute it and/or modify
