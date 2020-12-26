@@ -39,8 +39,9 @@ Restart VLC.
 **EXPLANATION & USAGE:**
 
 pl_Radio-Browser_info.lua:
-* Converts Radio-Browser.info api specific links into lists or readable radio links
-* Generally you would not add such links manually, put this plugin is needed for sd_Radio-Browser_info.lua
+* This plugin is needed by sd_Radio-Browser_info.lua (!)
+* It converts Radio-Browser.info api specific links into lists or readable radio links
+* Generally you would not add such links manually
 
 sd_Radio-Browser_info.lua:
 * Radio-Browser.info Service Discovery plugin for VLC ... i.e. listed on the left panel under "Internet"
@@ -53,4 +54,4 @@ ex_Radio-Browser_info.lua:
 * A simple search to retrieve the search specific radio stations
 * Search results are added to the existing (empty or non-empty) playlist
 * The more specific a search the less results, even 0
-* The dropdown lists will not update if one of the others dropdown is selected. This means you can have a situation were two or more selections of dropdown list produce 0 results, even though they specify existing stations in brackets, e.g. "Codec: AAC+ (102)" and "Language: Albania (27)".
+* The dropdown lists will not update if one of the others dropdown is selected. This means you can have a situation where two or more selections of dropdown list produce 0 results, even though they specify existing stations in brackets, e.g. "Codec: AAC+ (102)" and "Language: Albania (27)".
