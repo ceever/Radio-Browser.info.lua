@@ -17,9 +17,9 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
  
  **The service discovery and category lists:** 
-<p style="vertical-align:top">
-<img src="gfx/sd.png" width="400" style="border:1px blue solid"/>
-<img src="gfx/sd_list.png" width="440" style="border:1px blue solid"/>
+<p style="vertical-align:top;white-space:nowrap;">
+<img src="gfx/sd.png" width="320" style="border:1px blue solid"/>
+<img src="gfx/sd_list.png" width="350" style="border:1px blue solid"/>
 </p>
 
 **The search windows:**
