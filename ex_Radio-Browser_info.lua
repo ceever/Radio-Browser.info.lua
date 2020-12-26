@@ -1,6 +1,6 @@
 --[[
 
- Radio-Browser.info lua script (search window)
+ Radio-Browser.info 0.5 lua script (search window)
 
  Copyright © 2020 Andrew Jackson (https://github.com/ceever ... ceever@web.de)
 
@@ -26,7 +26,7 @@ Send me an email or open a ticket on github.
 
 
 
---- INSTALLATION: ---
+--- INSTALLATION ---:
 
 Put the according .lua file in the according subfolder of the VLC lua directory. VLC lua directory by default:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\
@@ -44,30 +44,31 @@ Restart VLC.
 
 
 
---- EXPLANATION & USAGE: ---
+--- EXPLANATION & USAGE ---:
 
 pl_Radio-Browser_info.lua:
-...* Converts Radio-Browser.info api specific links into lists or readable radio links
-...* Generally you would not add such links manually, put this plugin is needed for sd_Radio-Browser_info.lua
+* This plugin is needed by sd_Radio-Browser_info.lua (!)
+* It converts Radio-Browser.info api specific links into lists or readable radio links
+* Generally you would not add such links manually
 
 sd_Radio-Browser_info.lua:
-   * Radio-Browser.info Service Discovery plugin for VLC ... i.e. listed on the left panel under "Internet"
-   * Explore and crawls through all radio stations classified by categories
-   * Depends on the previous pl_Radio-Browser_info.lua for it to work
-   * After having found one or more list(s) of specific stations it is best to copy them into the playlist and continue searching and sorting there, since the Service Discovery zone is a little limited in its capabilities, especially after having found several list of sub categories.
+* Radio-Browser.info Service Discovery plugin for VLC ... i.e. listed on the left panel under "Internet"
+* Explore and crawls through all radio stations classified by categories
+* Depends on the previous pl_Radio-Browser_info.lua for it to work
+* After having found one or more list(s) of specific stations it is best to copy them into the playlist and continue searching and sorting there, since the Service Discovery zone is a little limited in its capabilities, especially after having found several list of sub categories.
 
 ex_Radio-Browser_info.lua:
-...* Works standalone without the other two plugins
-...* A simple search to retrieve the search specific radio stations
-...* Search results are added to the existing (empty or non-empty) playlist
-...* The more specific a search the less results, even 0
-...* The dropdown lists will not update if one of the others dropdown is selected. This means you can have a situation were two or more selections of dropdown list produce 0 results, even though they specify existing stations in brackets, e.g. "Codec: AAC+ (102)" and "Language: Albania (27)".
+* Works standalone without the other two plugins
+* A simple search to retrieve the search specific radio stations
+* Search results are added to the existing (empty or non-empty) playlist
+* The more specific a search the less results, even 0
+* The dropdown lists will not update if one of the others dropdown is selected. This means you can have a situation where two or more selections of dropdown list produce 0 results, even though they specify existing stations in brackets, e.g. "Codec: AAC+ (102)" and "Language: Albania (27)".
 
 --]]
 
 function descriptor()
-	return { title="Radio-Browser.info (Search)",
-		description = "<center><b>Radio-Browser.info</b> (Search)</center>",
+	return { title="Radio-Browser.info 0.5 (Search)",
+		description = "Radio-Browser.info (Search)",
 		version = "0.5",
 		author = "Andrew Jackson (ceever@web.de)",
 		capabilities = {},
