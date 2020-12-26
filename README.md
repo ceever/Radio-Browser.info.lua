@@ -22,7 +22,7 @@
 <img src="gfx/sd_list.png" width="350" style="border:1px blue solid"/>
 </p>
 
-**The search windows:**
+**The search window:**
 <p style="align:center">
 <img src="gfx/search.png" width="600" style="border:1px blue solid"/>
 </p>
