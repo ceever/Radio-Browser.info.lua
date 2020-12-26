@@ -15,6 +15,16 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+ 
+ <p>
+ The service discovery and category lists:<br/>
+   <img src="gfx/sd.png" width="442" />
+   <img src="gfx/sd_list.png" width="550"/>
+</p>
+<p> 
+The search windows:<br/>
+<img src="gfx/search.png" width="753"/>
+</p>
 
 **BUGS & REQUESTS:**
 
