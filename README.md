@@ -29,12 +29,12 @@
 <img src="gfx/sd_list.png" width="350"/>
 </p>
 
-<br/>
+
 **BUGS & REQUESTS:**
 
 Send me an email or open a ticket on github.
 
-<br/>
+
 **INSTALLATION:**
 
 Put the according .lua file in the according subfolder of the VLC lua directory. VLC lua directory by default:
@@ -51,7 +51,7 @@ According .lua file and according subfolder:
 
 Restart VLC.
 
-<br/>
+
 **EXPLANATION & USAGE:**
 
 pl_Radio-Browser_info.lua:
