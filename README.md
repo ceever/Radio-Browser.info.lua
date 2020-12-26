@@ -1,4 +1,4 @@
- Radio-Browser.info Lua Plugins for VLC
+## Radio-Browser.info Lua Plugins for VLC
 
 <img src="gfx/Radio-Browser.png" width="150" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 
@@ -29,12 +29,12 @@
 <img src="gfx/sd_list.png" width="350"/>
 </p>
 
-
+---
 **BUGS & REQUESTS:**
 
 Send me an email or open a ticket on github.
 
-
+---
 **INSTALLATION:**
 
 Put the according .lua file in the according subfolder of the VLC lua directory. VLC lua directory by default:
@@ -51,7 +51,7 @@ According .lua file and according subfolder:
 
 Restart VLC.
 
-
+---
 **EXPLANATION & USAGE:**
 
 pl_Radio-Browser_info.lua:
