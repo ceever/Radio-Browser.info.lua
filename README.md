@@ -15,16 +15,16 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+
+**The search window:**
+<p style="align:center">
+<img src="gfx/search.png" width="600"/>
+</p>
  
  **The service discovery and category lists:** 
 <p style="vertical-align:top;white-space:nowrap;">
 <img src="gfx/sd.png" width="320"/>
 <img src="gfx/sd_list.png" width="350"/>
-</p>
-
-**The search window:**
-<p style="align:center">
-<img src="gfx/search.png" width="600"/>
 </p>
 
 **BUGS & REQUESTS:**
