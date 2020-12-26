@@ -182,7 +182,7 @@ function activate()
 	name = d:add_text_input( "", 2, 1, 1, 1 )
 	tags = d:add_text_input( "", 2, 2, 1, 1 )
 
-    button = d:add_button("Search", main, 2, 6, 2, 1)
+    button = d:add_button("Search", main, 2, 6, 1, 1)
     d:show()
 	
 	d:update()
