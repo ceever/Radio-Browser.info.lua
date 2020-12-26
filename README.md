@@ -16,14 +16,15 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
  
- <p>
- **The service discovery and category lists:**<br/>
-   <img src="gfx/sd.png" width="80%" style="vertical-align:top"/>
-   <img src="gfx/sd_list.png" width="80%" style="vertical-align:top"/>
+ **The service discovery and category lists:** 
+<p>
+<img src="gfx/sd.png" width="400" style="vertical-align:top"/>
+<img src="gfx/sd_list.png" width="440" style="vertical-align:top"/>
 </p>
-<p> 
-**The search windows:**<br/>
-<img src="gfx/search.png" width="80%" style="vertical-align:top"/>
+
+**The search windows:**
+<p>
+<img src="gfx/search.png" width="600" style="vertical-align:top"/>
 </p>
 
 **BUGS & REQUESTS:**
