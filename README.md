@@ -17,14 +17,14 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
  
  **The service discovery and category lists:** 
-<p>
-<img src="gfx/sd.png" width="400" style="vertical-align:top"/>
-<img src="gfx/sd_list.png" width="440" style="vertical-align:top"/>
+<p style="vertical-align:top">
+<img src="gfx/sd.png" width="400" border="1px blue solid"/>
+<img src="gfx/sd_list.png" width="440" border="1px blue solid"/>
 </p>
 
 **The search windows:**
-<p>
-<img src="gfx/search.png" width="600" style="vertical-align:top"/>
+<p style="align:center">
+<img src="gfx/search.png" width="600" border="1px blue solid"/>
 </p>
 
 **BUGS & REQUESTS:**
