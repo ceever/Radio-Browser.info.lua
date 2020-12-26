@@ -17,13 +17,13 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
  
  <p>
- The service discovery and category lists:<br/>
-   <img src="gfx/sd.png" width="442" />
-   <img src="gfx/sd_list.png" width="550"/>
+ **The service discovery and category lists:**<br/>
+   <img src="gfx/sd.png" width="80%" style="vertical-align:top"/>
+   <img src="gfx/sd_list.png" width="80%" style="vertical-align:top"/>
 </p>
 <p> 
-The search windows:<br/>
-<img src="gfx/search.png" width="753"/>
+**The search windows:**<br/>
+<img src="gfx/search.png" width="80%" style="vertical-align:top"/>
 </p>
 
 **BUGS & REQUESTS:**
