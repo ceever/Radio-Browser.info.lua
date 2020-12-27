@@ -67,7 +67,7 @@ ex_Radio-Browser_info.lua:
 --]]
 
 function descriptor()
-	return { title="Radio-Browser.info 0.5 (Search)",
+	return { title="Radio-Browser.info (Search)",
 		description = "Radio-Browser.info (Search)",
 		version = "0.5",
 		author = "Andrew Jackson (ceever@web.de)",
