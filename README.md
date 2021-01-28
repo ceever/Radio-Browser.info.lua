@@ -54,6 +54,8 @@ Restart VLC.
 ---
 **EXPLANATION & USAGE:**
 
+Use the information in the VLC *Artist* column (either *Count: XXXX* or *Clicks: XXXX*) to sort on number of stations or popularity. Also, the VLC *Album* column contains the sortable Bitrate information.
+
 pl_Radio-Browser_info.lua:
 * This plugin is needed by sd_Radio-Browser_info.lua (!)
 * It converts Radio-Browser.info api specific links into lists or readable radio links
