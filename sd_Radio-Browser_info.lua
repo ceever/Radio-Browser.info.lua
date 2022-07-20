@@ -1,6 +1,6 @@
 --[[
 
- Radio-Browser.info 0.5 lua script (service discovery)
+ Radio-Browser.info 0.55 lua script (service discovery)
 
  Copyright © 2020 Andrew Jackson (https://github.com/ceever ... ceever@web.de)
 
@@ -28,7 +28,7 @@ Send me an email or open a ticket on github.
 
 --- INSTALLATION ---:
 
-Put the according .lua file in the according subfolder of the VLC lua directory. VLC lua directory by default:
+Put the according .lua file in the according subfolder (see below) of the VLC lua directory. VLC lua directory by default:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\
 * Windows (current user): %APPDATA%\VLC\lua\
 * Linux (all users): /usr/lib/vlc/lua/
@@ -69,7 +69,7 @@ ex_Radio-Browser_info.lua:
 function descriptor()
 	return { title="Radio-Browser.info",
 		description = "Radio-Browser.info (Service Discovery)",
-		version = "0.5",
+		version = "0.55",
 		author = "Andrew Jackson (ceever@web.de)",
 		capabilities = {},
 		url = "https://github.com/ceever"
@@ -130,5 +130,5 @@ function main()
 	-- Also an "All stations" category separate because here we add the overall count of stations from the (hopefully worked) "By codec" part.
 	tmp = ""
 	if 0 < count then tmp = "Count: " .. tostring(count) end
-	vlc.sd.add_item( {title = "All stations ( Loading will take a while, be patient! )", path = base_url .. "stations", artist = tmp} )
+	vlc.sd.add_item( {title = "All stations (Use with care. Might fail due to size!)", path = base_url .. "stations", artist = tmp} )
 end
