@@ -37,7 +37,7 @@ Send me an email or open a ticket on github.
 ---
 **INSTALLATION:**
 
-Put the according .lua file in the according subfolder of the VLC lua directory. VLC lua directory by default:
+Put the according .lua file in the according subfolder (see below) of the VLC lua directory. VLC lua directory by default:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\
 * Windows (current user): %APPDATA%\VLC\lua\
 * Linux (all users): /usr/lib/vlc/lua/
@@ -66,6 +66,7 @@ sd_Radio-Browser_info.lua:
 * Explore and crawls through all radio stations classified by categories
 * Depends on the previous pl_Radio-Browser_info.lua for it to work
 * After having found one or more list(s) of specific stations it is best to copy them into the playlist and continue searching and sorting there, since the Service Discovery zone is a little limited in its capabilities, especially after having found several list of sub categories.
+* Be careful trying to load "All stations (..." !. This might fail due to the cheer size of the request, or it will let VLC crash, depending on you system ressources.
 
 ex_Radio-Browser_info.lua:
 * Works standalone without the other two plugins
