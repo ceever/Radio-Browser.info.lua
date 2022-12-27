@@ -1,6 +1,8 @@
-## Radio-Browser.info Lua Plugins for VLC
+## Radio-Browser.info Addons for VLC
 
-<img src="gfx/Radio-Browser.png" width="150" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
+**VLC Service discovery, playlist and search addons (aka lua scripts) for the Radio-Browser.info database**
+
+<img src="gfx/Radio-Browser.png"/>
 
 ---
  Copyright © 2022 Andrew Jackson (https://github.com/ceever)
