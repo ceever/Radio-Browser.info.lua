@@ -2,7 +2,8 @@
 
 <img src="gfx/Radio-Browser.png" width="150" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 
- Copyright © 2020 Andrew Jackson (https://github.com/ceever ... ceever@web.de)
+---
+ Copyright © 2022 Andrew Jackson (https://github.com/ceever)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the **GNU General Public License** as published by
@@ -18,6 +19,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 
+---
 **The search window:**
 <p style="align:center">
 <img src="gfx/search.png" width="600"/>
