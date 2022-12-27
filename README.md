@@ -62,7 +62,9 @@ Restart VLC.
 ---
 **EXPLANATION & USAGE:**
 
-Use the information in the VLC *Artist* column (either *Count: XXXX* or *Clicks: XXXX*) to sort on number of stations or popularity. Also, the VLC *Album* column contains the sortable Bitrate information.
+**Important**: The (VLC) columns *Album*, *Genre* and *Description* will hold relevant information for each station, namely: 1) Album: either *Count: XXXX* or *Clicks: XXXX* (to sort on number of stations or popularity), 2) Genre: a genre desciption, and 3) Description: sortable Bitrate information.
+
+However, you are better off importing all (relevant) stations into the playlist first (right click), before trying to sort anything. Sorting on items and folders at the same in the Service Discover is not so intuitive.
 
 pl_Radio-Browser_info.lua:
 * This plugin is needed by sd_Radio-Browser_info.lua (!)
