@@ -2,6 +2,10 @@
 
 **VLC Service discovery, playlist and search addons (aka lua scripts) for the Radio-Browser.info database**
 
+Website / DB: https://www.radio-browser.info/
+
+Various apps and add-ons: https://www.radio-browser.info/users
+
 <img src="gfx/Radio-Browser.png"/>
 
 ---
