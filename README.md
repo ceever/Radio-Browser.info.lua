@@ -53,9 +53,11 @@ Put the according .lua file in the according subfolder (see below) of the VLC lu
 (create directories if they don't exist)
 
 According .lua file and according subfolder:
-* ex_Radio-Browser_info.lua => ...\lua\extensions\
-* sd_Radio-Browser_info.lua => ...\lua\sd\
-* pl_Radio-Browser_info.lua => ...\lua\playlist\
+* ex_Radio_Browser_info.lua => ...\lua\extensions\
+* sd_Radio_Browser_info.lua => ...\lua\sd\
+* pl_Radio_Browser_info.lua => ...\lua\playlist\
+
+(In case you want a nice picture with the search extension, place the "Radio-Browser.png" picture from the Github "/gfx" folder into "...\lua\extensions\" and change the absolute path of the picture inside "ex_Radio_Browser_info.lua"—search for "d:add_image(..." in the lua code.)
 
 Restart VLC.
 
