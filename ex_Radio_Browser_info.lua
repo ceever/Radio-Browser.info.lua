@@ -47,16 +47,16 @@ Restart VLC.
 
 --- EXPLANATION & USAGE ---:
 
-**Important**: With these add-ons the VLC columns *Album*, *Genre* and *Description* will hold relevant information for each radio station, namely: 1) Album: either *Count: XXXX* or *Clicks: XXXX* (to sort on number of stations or popularity), 2) Genre: a genre desciption, and 3) Description: sortable Bitrate information.
+**Important**: With these add-ons the VLC columns *Album*, *Genre* and *Description* will hold relevant information for each radio station, namely: 1) Album: either *Count: XXXX* or *Clicks: XXXX* (to sort on number of stations or popularity), 2) Genre: a genre desciption, and 3) Description: sortable Bitrate information. So, have them displayed and try to use them if feasible.
 
-Inside the Service Discover / Internet tab you are better off importing all (relevant) stations into the playlist first (right click >> "Add to Playlist"), before trying to sort anything.
+Inside the Service Discover / Internet tab of VLC you are better off transferring all (relevant) stations into the regular VLC playlist first (right click >> "Add to Playlist"), before trying to sort anything.
 
 pl_Radio-Browser_info.lua (playlist plugin for Service Discovery):
 * This plugin is needed by sd_Radio-Browser_info.lua (!).
 * It converts Radio-Browser.info API specific links into lists or readable radio links.
 * Generally you would not add such links manually.
 
-sd_Radio-Browser_info.lua (service Discovery / Internet):
+sd_Radio-Browser_info.lua (Service Discovery / Internet):
 * Service Discovery / Internet add-on for VLC ... i.e. listed on the left panel under "Internet".
 * Explore and crawls through all radio stations classified by categories (codec, language, country, tag).
 * It depends on pl_Radio-Browser_info.lua—both need to be installed at the same time.
