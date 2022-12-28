@@ -40,7 +40,7 @@ Put the relevant .lua file(s) into the according subfolder (see below) of the VL
 * pl_Radio_Browser_info.lua => ...\lua\playlist\
 
 (In case you want the nice smiley with the search extension as in the screenshots, place the "Radio-Browser.png" picture from the Github "gfx/" folder or the zip repository into "...\lua\extensions\" and change the path of the picture 'd:add_image("PATH")' in the "ex_Radio_Browser_info.lua" script.
-Note, under MS Windows you may need to use double backslashes, e.g. 'd:add_image("C:\\Program Files\\VideoLAN\VLC\\lua\\extensions\\Radio-Browser.png")')
+Note, under MS Windows you may need to use double backslashes, e.g. 'd:add_image("C:\\Program Files\\VideoLAN\\VLC\\lua\\extensions\\Radio-Browser.png")')
 
 Restart VLC.
 
