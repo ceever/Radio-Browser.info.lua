@@ -1,10 +1,9 @@
 ## Radio-Browser.info Addons for VLC
 
-**VLC Service discovery, playlist and search addons (aka lua scripts) for the Radio-Browser.info database**
+**VLC Service Discovery / Internet and Search Window add-ons (aka lua scripts) for the Radio-Browser.info database**
 
-Website / DB: https://www.radio-browser.info/
-
-Various apps and add-ons: https://www.radio-browser.info/users
+* Website / DB: https://www.radio-browser.info/
+* Various alternative apps and add-ons: https://www.radio-browser.info/users
 
 <img src="gfx/Radio-Browser.png"/>
 
@@ -26,12 +25,12 @@ Various apps and add-ons: https://www.radio-browser.info/users
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 
 ---
-**The search window:**
+**The Search window by VLC:**
 <p style="align:center">
 <img src="gfx/search.png" width="675"/>
 </p>
  
- **The service discovery and category lists:** 
+ **The Service Discovery / Internet in VLC:** 
 <p style="vertical-align:top;white-space:nowrap;">
 <img src="gfx/sd.png" width="320"/>
 <img src="gfx/sd_list.png" width="350"/>
@@ -40,49 +39,49 @@ Various apps and add-ons: https://www.radio-browser.info/users
 ---
 **BUGS & REQUESTS:**
 
-Send me an email or open a ticket on github.
+Send me a mail or a ticket on github.
 
 ---
 **INSTALLATION:**
 
-Put the according .lua file in the according subfolder (see below) of the VLC lua directory. VLC lua directory by default:
+Put the relevant .lua file(s) into the according subfolder (see below) of the VLC lua directory. VLC lua directory by default:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\
 * Windows (current user): %APPDATA%\VLC\lua\
-* Linux (all users): /usr/lib/vlc/lua/ or /usr/lib/x86_64-linux-gnu/vlc/lua/
+* Linux (all users): /usr/share/vlc/lua/
 * Linux (current user): ~/.local/share/vlc/lua/
 (create directories if they don't exist)
 
-According .lua file and according subfolder:
+.lua files and according subfolder:
 * ex_Radio_Browser_info.lua => ...\lua\extensions\
 * sd_Radio_Browser_info.lua => ...\lua\sd\
 * pl_Radio_Browser_info.lua => ...\lua\playlist\
 
-(In case you want a nice picture with the search extension, place the "Radio-Browser.png" picture from the Github "/gfx" folder into "...\lua\extensions\" and change the absolute path of the picture inside "ex_Radio_Browser_info.lua"—search for "d:add_image(..." in the lua code.)
+(In case you want the nice smiley with the search extension as in the screenshots, place the "Radio-Browser.png" picture from the Github "gfx/" folder or the zip repository into "...\lua\extensions\" and change the path of the picture 'd:add_image("PATH")' in the "ex_Radio_Browser_info.lua" script.
+Note, under MS Windows you may need to use double backslashes, e.g. 'd:add_image("C:\\\\Program Files\\\\VideoLAN\\\\VLC\\\\lua\\\\extensions\\\\Radio-Browser.png")')
 
 Restart VLC.
 
 ---
 **EXPLANATION & USAGE:**
 
-**Important**: The (VLC) columns *Album*, *Genre* and *Description* will hold relevant information for each station, namely: 1) Album: either *Count: XXXX* or *Clicks: XXXX* (to sort on number of stations or popularity), 2) Genre: a genre desciption, and 3) Description: sortable Bitrate information.
+**Important**: With these add-ons the VLC columns *Album*, *Genre* and *Description* will hold relevant information for each radio station, namely: 1) Album: either *Count: XXXX* or *Clicks: XXXX* (to sort on number of stations or popularity), 2) Genre: a genre desciption, and 3) Description: sortable Bitrate information. So, have them displayed and try to use them if feasible.
 
-However, you are better off importing all (relevant) stations into the playlist first (right click), before trying to sort anything. Sorting on items and folders at the same in the Service Discover is not so intuitive.
+Inside the Service Discover / Internet tab of VLC you are better off transferring all (relevant) stations into the regular VLC playlist first (right click >> "Add to Playlist"), before trying to sort anything.
 
-pl_Radio-Browser_info.lua:
-* This plugin is needed by sd_Radio-Browser_info.lua (!)
-* It converts Radio-Browser.info api specific links into lists or readable radio links
-* Generally you would not add such links manually
+pl_Radio-Browser_info.lua (playlist plugin for Service Discovery):
+* This plugin is needed by sd_Radio-Browser_info.lua (!).
+* It converts Radio-Browser.info API specific links into lists or readable radio links.
+* Generally you would not add such links manually.
 
-sd_Radio-Browser_info.lua:
-* Radio-Browser.info Service Discovery plugin for VLC ... i.e. listed on the left panel under "Internet"
-* Explore and crawls through all radio stations classified by categories
-* Depends on the previous pl_Radio-Browser_info.lua for it to work
-* After having found one or more list(s) of specific stations it is best to copy them into the playlist and continue searching and sorting there, since the Service Discovery zone is a little limited in its capabilities, especially after having found several list of sub categories.
-* Be careful trying to load "All stations (..." !. This might fail due to the cheer size of the request, or it will let VLC crash, depending on you system ressources.
+sd_Radio-Browser_info.lua (Service Discovery / Internet):
+* Service Discovery / Internet add-on for VLC ... i.e. listed on the left panel under "Internet".
+* Explore and crawls through all radio stations classified by categories (codec, language, country, tag).
+* It depends on pl_Radio-Browser_info.lua—both need to be installed at the same time.
+* After having found one or more stations in the Service Discovery / Internet, it is best to copy them into the playlist (right click >> "Add to Playlist") and continue searching and them sorting there. The Service Discovery is a little limited in its sorting capabilities, especially after having explored several sub categories.
 
-ex_Radio-Browser_info.lua:
-* Works standalone without the other two plugins
-* A simple search to retrieve the search specific radio stations
-* Search results are added to the existing (empty or non-empty) playlist
-* The more specific a search the less results, even 0
-* The dropdown lists will not update if one of the others dropdown is selected. This means you can have a situation where two or more selections of dropdown list produce 0 results, even though they specify existing stations in brackets, e.g. "Codec: AAC+ (102)" and "Language: Albania (27)".
+ex_Radio-Browser_info.lua (Search window):
+* Found under the VLC menu: View >> "Radio-Browser.info (Search)"
+* This can work standalone, without the other two add-ons/lua scripts.
+* Found radio stations are counted, and can be added to the regular (empty or non-empty) VLC playlist.
+* Dropdown lists will not update (counts nor values) if one of the others search parameters is specified. Thus, even when specific stations exist, e.g. "Codec: AAC+ (102)" and "Language: Albania (27)", together they might not produce any results.
+* In general, the more specific the search the less radio stations—some search parameters might exclude each other, e.g. language=afrikaans and country=Russia.
