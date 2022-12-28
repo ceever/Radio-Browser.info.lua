@@ -30,8 +30,9 @@
 <img src="gfx/search.png" width="675"/>
 </p>
  
- **The Service Discovery / Internet in VLC:** 
+**The Service Discovery / Internet (tab) in VLC:** 
 <p style="vertical-align:top;white-space:nowrap;">
+<img src="gfx/screen00.png" width="675"/><br/>
 <img src="gfx/sd.png" width="320"/>
 <img src="gfx/sd_list.png" width="350"/>
 </p>
