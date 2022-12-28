@@ -21,7 +21,8 @@
 
 --- BUGS & REQUESTS: ---
 
-Send me a mail or a ticket on github.
+Send me a mail or a ticket on github: https://github.com/ceever/Radio-Browser.info.lua
+In case you use LXQt, Lubuntu or Gnome, checkout my other project: https://github.com/ceever/PCManFM-Qt-Context-Menu
 
 
 --- INSTALLATION ---:
