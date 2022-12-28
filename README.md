@@ -28,7 +28,7 @@ Various apps and add-ons: https://www.radio-browser.info/users
 ---
 **The search window:**
 <p style="align:center">
-<img src="gfx/search.png" width="600"/>
+<img src="gfx/search.png" width="675"/>
 </p>
  
  **The service discovery and category lists:** 
