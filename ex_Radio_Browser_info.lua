@@ -87,7 +87,6 @@ function ParseCSVLine(line,sep)
 	local pos = 1
 	sep = sep or ','
 	while true do 
-		::continue::
 		local c = string.sub(line,pos,pos)
 		if (c == "") then break end
 		if (c == '"') then
@@ -97,16 +96,16 @@ function ParseCSVLine(line,sep)
 				local startp,endp = string.find(line,'^%b""',pos)
 				if not endp then -- We won't fail on incomplete quotes
 					pos = pos + 1
-					goto continue
+				else
+					txt = txt..string.sub(line,startp+1,endp-1)
+					pos = endp + 1
+					c = string.sub(line,pos,pos) 
+					if (c == '"') then txt = txt..'"' end 
+					-- check first char AFTER quoted string, if it is another
+					-- quoted string without separator, then append it
+					-- this is the way to "escape" the quote char in a quote. example:
+					--   value1,"blub""blip""boing",value3  will result in blub"blip"boing  for the middle
 				end
-				txt = txt..string.sub(line,startp+1,endp-1)
-				pos = endp + 1
-				c = string.sub(line,pos,pos) 
-				if (c == '"') then txt = txt..'"' end 
-				-- check first char AFTER quoted string, if it is another
-				-- quoted string without separator, then append it
-				-- this is the way to "escape" the quote char in a quote. example:
-				--   value1,"blub""blip""boing",value3  will result in blub"blip"boing  for the middle
 			until (c ~= '"')
 			table.insert(res,txt)
 			assert(c == sep or c == "")
