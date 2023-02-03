@@ -1,6 +1,6 @@
 --[[
 
- Radio-Browser.info 0.59 add-on/lua script for VLC (Search window)
+ Radio-Browser.info 0.61 add-on/lua script for VLC (Search window)
 
  Copyright © 2022 Andrew Jackson (https://github.com/ceever)
 
@@ -74,7 +74,7 @@ ex_Radio-Browser_info.lua (Search window):
 function descriptor()
 	return { title="Radio-Browser.info (Search)",
 		description = "Radio-Browser.info (Search)",
-		version = "0.59",
+		version = "0.61",
 		author = "Andrew Jackson",
 		capabilities = {},
 		url = "https://github.com/ceever"
@@ -87,32 +87,28 @@ function ParseCSVLine(line,sep)
 	local pos = 1
 	sep = sep or ','
 	while true do 
-		::continue::
 		local c = string.sub(line,pos,pos)
 		if (c == "") then break end
-		if (c == '"') then
-			-- quoted value (ignore separator within)
-			local txt = ""
-			repeat
-				local startp,endp = string.find(line,'^%b""',pos)
-				if not endp then -- We won't fail on incomplete quotes
-					pos = pos + 1
-					goto continue
-				end
-				txt = txt..string.sub(line,startp+1,endp-1)
-				pos = endp + 1
-				c = string.sub(line,pos,pos) 
-				if (c == '"') then txt = txt..'"' end 
-				-- check first char AFTER quoted string, if it is another
-				-- quoted string without separator, then append it
-				-- this is the way to "escape" the quote char in a quote. example:
-				--   value1,"blub""blip""boing",value3  will result in blub"blip"boing  for the middle
-			until (c ~= '"')
-			table.insert(res,txt)
-			assert(c == sep or c == "")
+		if (c == '"') then   -- quoted value (ignore separator within)
+			local startp,endp = string.find(line,'^%b""',pos)
+			if endp then -- In case of incomplete quotes, we will continue just using separators
+				local txt = ""
+				repeat
+					local startp,endp = string.find(line,'^%b""',pos)
+					txt = txt..string.sub(line,startp+1,endp-1)
+					pos = endp + 1
+					c = string.sub(line,pos,pos) 
+					if (c == '"') then txt = txt..'"' end 
+					-- check first char AFTER quoted string, if it is another
+					-- quoted string without separator, then append it
+					-- this is the way to "escape" the quote char in a quote. example:
+					--   value1,"blub""blip""boing",value3  will result in blub"blip"boing  for the middle
+				until (c ~= '"')
+				table.insert(res,txt)
+				assert(c == sep or c == "")
+			end
 			pos = pos + 1
-		else	
-			-- no quotes used, just look for the first separator
+		else   -- no quotes used, just look for the first separator
 			local startp,endp = string.find(line,sep,pos)
 			if (startp) then 
 				table.insert(res,string.sub(line,pos,startp-1))
@@ -196,8 +192,8 @@ function activate()
 	name = d:add_text_input( "", 2, 1, 2, 1)
 	tags = d:add_text_input( "", 2, 2, 2, 1)
 
-	button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
 	button = d:add_button("Search", main, 2, 6, 2, 1)
+	button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
 	d:show()
 	
 	d:update()
@@ -207,7 +203,7 @@ function activate()
 	d:update()
 	language = add_dropdown(d, "languages", 5)
 	
-	d:add_image("/home/XXX/.local/share/vlc/lua/extensions/Radio-Browser.png", 4, 1, 1, 6)
+	d:add_image("/home/aj/.local/share/vlc/lua/extensions/Radio-Browser.png", 4, 1, 1, 6)
 end
 
 -- Getting the HTML search string with nice "&"s to be placed after "...search?"
@@ -331,13 +327,13 @@ function mainer()
 		end
 		
 		d:del_widget( search )
-		button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
 		button_f = d:add_button( "Found ... " .. k .. " ... Add?", enqueue, 2, 6, 1, 1)
 		button = d:add_button( "Change and Retry?", mainf, 3, 6, 1, 1)
+		button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
 	else
 		d:del_widget( search )
-		button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
 		button = d:add_button( "Nothing found! ... Try with different parameters? ... Change and Retry!", main, 2, 6, 2, 1)
+		button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
 	end
 	
 	--vlc.playlist.enqueue( {{path="https://" .. server .. ".api.radio-browser.info/xml/stations/search" .. get_strg():gsub("^&", "?"), title = "Retrieving search ... please be patient!"}} )
