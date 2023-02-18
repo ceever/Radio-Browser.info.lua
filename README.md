@@ -8,7 +8,7 @@
 <img src="gfx/Radio-Browser.png"/>
 
 ---
- Copyright © 2022 Andrew Jackson (https://github.com/ceever)
+ Copyright © 2020-2023 Andrew Jackson (https://github.com/ceever)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the **GNU General Public License** as published by
