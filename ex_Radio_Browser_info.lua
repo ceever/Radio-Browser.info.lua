@@ -1,8 +1,8 @@
 --[[
 
- Radio-Browser.info 0.61 add-on/lua script for VLC (Search window)
+ Radio-Browser.info 0.62 add-on/lua script for VLC (Search window)
 
- Copyright © 2022 Andrew Jackson (https://github.com/ceever)
+ Copyright © 2020-2023 Andrew Jackson (https://github.com/ceever)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -65,6 +65,7 @@ sd_Radio-Browser_info.lua (Service Discovery / Internet):
 ex_Radio-Browser_info.lua (Search window):
 * Found under the VLC menu: View >> "Radio-Browser.info (Search)"
 * This can work standalone, without the other two add-ons/lua scripts.
+* Searches are sent unencrypted via http, due to performance and cerificate error reasons. Change the http to https in the lua script if you want.
 * Found radio stations are counted, and can be added to the regular (empty or non-empty) VLC playlist.
 * Dropdown lists will not update (counts nor values) if one of the others search parameters is specified. Thus, even when specific stations exist, e.g. "Codec: AAC+ (102)" and "Language: Albania (27)", together they might not produce any results.
 * In general, the more specific the search the less radio stations—some search parameters might exclude each other, e.g. language=afrikaans and country=Russia.
@@ -74,7 +75,7 @@ ex_Radio-Browser_info.lua (Search window):
 function descriptor()
 	return { title="Radio-Browser.info (Search)",
 		description = "Radio-Browser.info (Search)",
-		version = "0.61",
+		version = "0.62",
 		author = "Andrew Jackson",
 		capabilities = {},
 		url = "https://github.com/ceever"
@@ -130,13 +131,12 @@ function csv_request(path)
 	while ( nil == csv ) do
 		shuffled = {}
 		math.randomseed(os.time())
-		for i, v in ipairs( {"at1", "nl1", "de1", "fr1"} ) do
+		for i, v in ipairs( servers ) do
 			table.insert(shuffled, math.random(1, #shuffled+1), v)
 		end
-		for _, ip in pairs( shuffled ) do
+		for _, server in pairs( shuffled ) do
 			-- Fuck that broken vlc xml streaming (!)
-			csv = vlc.stream( "https://" .. ip .. ".api.radio-browser.info/csv/" .. path )
-			server = ip
+			csv = vlc.stream( "http://" .. server .. "/csv/" .. path )
 			if csv then
 				break
 			end
@@ -175,12 +175,16 @@ end
 
 -- Creating the interaction windows
 function activate()
-	server = "at1"
+	servers = {}
+	for server in vlc.stream( "http://de1.api.radio-browser.info/json/servers" ):read( 100000 ):gmatch '"ip"%s*:%s*"[%d%.]+"%s*,%s*"name"%s*:%s*"([^"]+)"' do
+		table.insert( servers, server )
+	end
+	
 	tracks = {}
 	d = vlc.dialog("Radio-Browser.info (Search)")
 
 	d:add_label( "Name (the shorter, the more):", 1, 1, 1, 1)
-	d:add_label( "Tags (the less, the more):", 1, 2, 1, 1)
+	d:add_label( "Tags (the fewer, the more):", 1, 2, 1, 1)
 	d:add_label( "Codec:", 1, 3, 1, 1)
 	d:add_label( "Country:", 1, 4, 1, 1)
 	d:add_label( "Language:", 1, 5, 1, 1)
@@ -190,7 +194,7 @@ function activate()
 	d:add_label( "&nbsp; &nbsp; loading ...", 2, 5, 2, 1)
 	
 	name = d:add_text_input( "", 2, 1, 2, 1)
-	tags = d:add_text_input( "", 2, 2, 2, 1)
+	tags = d:add_text_input( "TAG0,TAG 1,LONG TAG 2,#TAG_3", 2, 2, 2, 1)
 
 	button = d:add_button("Search", main, 2, 6, 2, 1)
 	button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
@@ -209,11 +213,21 @@ end
 -- Getting the HTML search string with nice "&"s to be placed after "...search?"
 function get_strg()
 	strg = ""
-	if "" ~= name:get_text() then
-		strg = strg .. "&name=" .. vlc.strings.encode_uri_component( name:get_text() )
+	local tmp = name:get_text()
+	if "" ~= tmp then
+		tmp = tmp:gsub("^[%s%c]+", ""):gsub("[%s%c]+$", "")
+		strg = strg .. "&name=" .. vlc.strings.encode_uri_component( tmp )
+		name:set_text(tmp)
 	end
-	if "" ~= tags:get_text() then
-		strg = strg .. "&tagList=" .. vlc.strings.encode_uri_component( tags:get_text():gsub(" ", ",") )
+	tmp = tags:get_text()
+	if "" ~= tmp then
+		if "TAG" ~= tmp:sub(1,3) then
+			tmp = tmp:gsub("^[%s%c,]+", ""):gsub("[%s%c,]+$", ""):gsub(",[%s%c]+", ","):gsub("[%s%c]+,", ",")
+			strg = strg .. "&tagList=" .. vlc.strings.encode_uri_component( tmp )
+			tags:set_text(tmp)
+		else
+			tags:set_text("")
+		end
 	end
 	if codec:get_text() then
 		if "" ~= codec:get_text() then
@@ -272,7 +286,6 @@ function mainer()
 	d:update()
 
 	local csv = csv_request( "stations/search" .. get_strg():gsub("^&", "?") )
-	print("stations/search" .. get_strg():gsub("^&", "?"))
 	tmp = csv:readline()
 	if tmp then
 		local size = 1
@@ -300,7 +313,7 @@ function mainer()
 			local bstrg = "     " .. line[headers["bitrate"]]
 			local bstrlen = string.len(bstrg)
 
-			-- We cannot work with "m3u/url/stationuuid" paths for click counting, because VLC just resolves them and does not continue playing in SD. In playlist they get resolved, but the player jumps to the next item, which would be the resolved url unless VLC is in random—then it goes mental. ... >> "https://" .. server .. ".api.radio-browser.info/m3u/url/" .. line[headers["stationuuid"]] <<
+			-- We cannot work with "m3u/url/stationuuid" paths for click counting, because VLC just resolves them and does not continue playing in SD. In playlist they get resolved, but the player jumps to the next item, which would be the resolved url unless VLC is in random—then it goes mental. ... >> "https://de1.api.radio-browser.info/m3u/url/" .. line[headers["stationuuid"]] <<
 			local path = line[headers["url"]]
 			if string.match(string.lower(line[headers["url"]]), ".pls$")
 			or string.match(string.lower(line[headers["url"]]), ".m3u$")
@@ -327,8 +340,8 @@ function mainer()
 		end
 		
 		d:del_widget( search )
-		button_f = d:add_button( "Found ... " .. k .. " ... Add?", enqueue, 2, 6, 1, 1)
-		button = d:add_button( "Change and Retry?", mainf, 3, 6, 1, 1)
+		button = d:add_button( "Change and Retry?", mainf, 2, 6, 1, 1)
+		button_f = d:add_button( "Found ... " .. k .. " ... Add?", enqueue, 3, 6, 1, 1)
 		button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
 	else
 		d:del_widget( search )
@@ -336,6 +349,4 @@ function mainer()
 		button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
 	end
 	
-	--vlc.playlist.enqueue( {{path="https://" .. server .. ".api.radio-browser.info/xml/stations/search" .. get_strg():gsub("^&", "?"), title = "Retrieving search ... please be patient!"}} )
-
 end
