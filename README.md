@@ -43,6 +43,22 @@
 Send me a mail or a ticket on github.
 
 ---
+**UPDATES:**
+
+18.02.2023: v0.62 / ex:
+1. Better handling of names and tags, auto removing unnecessary whitespaces.
+2. Updated tag search, now only commas count as separators. Space, #, etc. are now allowed in tags. And thus, included an indication of tag search pattern with each new search window: TAG0,TAG 1,LONG TAG 2,#TAG_3
+3. Updated button order for three buttons—more intuitive now.
+4. Better API server handling, getting list from the API itself instead of guessing.
+5. Switched from https to http for performance and certificate compatibility reasons (change lua script if you still want https).
+
+03.02.2023: v0.61 / ex:
+1. Fixed a Windows 10 / VLC incompatibility
+2. Changed button order so hitting ENTER starts the search and not closed the window
+
+28.12.2022: v0.59 / sd and pl: Fixed some bugs due to changes to the radio-browser.info API.
+
+---
 **INSTALLATION:**
 
 Put the relevant .lua file(s) into the according subfolder (see below) of the VLC lua directory. VLC lua directory by default:
@@ -83,6 +99,7 @@ sd_Radio-Browser_info.lua (Service Discovery / Internet):
 ex_Radio-Browser_info.lua (Search window):
 * Found under the VLC menu: View >> "Radio-Browser.info (Search)"
 * This can work standalone, without the other two add-ons/lua scripts.
+* Searches are sent unencrypted via http, due to performance and cerificate error reasons. Change the http to https in the lua script if you want.
 * Found radio stations are counted, and can be added to the regular (empty or non-empty) VLC playlist.
 * Dropdown lists will not update (counts nor values) if one of the others search parameters is specified. Thus, even when specific stations exist, e.g. "Codec: AAC+ (102)" and "Language: Albania (27)", together they might not produce any results.
 * In general, the more specific the search the less radio stations—some search parameters might exclude each other, e.g. language=afrikaans and country=Russia.
