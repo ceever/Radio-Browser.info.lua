@@ -25,7 +25,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 
 ---
-**The Search window by VLC:**
+**The Radio-Browser search window in VLC:**
 <p style="align:center">
 <img src="gfx/search.png" width="675"/>
 </p>
@@ -45,18 +45,23 @@ Send me a mail or a ticket on github.
 ---
 **UPDATES:**
 
-18.02.2023: v0.62 / ex:
+05.03.2023: v0.7 (ex)
+1. Added a search results list, to select specific stations and only add them to the VLC playlist.
+2. The search window remains open now after having added stations, so one can continue with another (different) search.
+3. The search window will close automatically when playback is started in the VLC playlist.
+
+18.02.2023: v0.62 (ex)
 1. Better handling of names and tags, auto removing unnecessary whitespaces.
 2. Updated tag search, now only commas count as separators. Space, #, etc. are now allowed in tags. And thus, included an indication of tag search pattern with each new search window: TAG0,TAG 1,LONG TAG 2,#TAG_3
 3. Updated button order for three buttons—more intuitive now.
 4. Better API server handling, getting list from the API itself instead of guessing.
 5. Switched from https to http for performance and certificate compatibility reasons (change lua script if you still want https).
 
-03.02.2023: v0.61 / ex:
+03.02.2023: v0.61 (ex)
 1. Fixed a Windows 10 / VLC incompatibility
 2. Changed button order so hitting ENTER starts the search and not closed the window
 
-28.12.2022: v0.59 / sd and pl: Fixed some bugs due to changes to the radio-browser.info API.
+28.12.2022: v0.59 (sd & pl): Fixed some bugs due to changes to the radio-browser.info API.
 
 ---
 **INSTALLATION:**
