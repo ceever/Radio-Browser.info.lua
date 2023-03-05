@@ -1,6 +1,6 @@
 --[[
 
- Radio-Browser.info 0.62 add-on/lua script for VLC (Search window)
+ Radio-Browser.info 0.7 add-on/lua script for VLC (Search window)
 
  Copyright © 2020-2023 Andrew Jackson (https://github.com/ceever)
 
@@ -75,7 +75,7 @@ ex_Radio-Browser_info.lua (Search window):
 function descriptor()
 	return { title="Radio-Browser.info (Search)",
 		description = "Radio-Browser.info (Search)",
-		version = "0.62",
+		version = "0.7",
 		author = "Andrew Jackson",
 		capabilities = {},
 		url = "https://github.com/ceever"
@@ -176,11 +176,16 @@ end
 -- Creating the interaction windows
 function activate()
 	servers = {}
-	for server in vlc.stream( "http://de1.api.radio-browser.info/json/servers" ):read( 100000 ):gmatch '"ip"%s*:%s*"[%d%.]+"%s*,%s*"name"%s*:%s*"([^"]+)"' do
+	local tmp = nil
+	while nil == tmp do
+		tmp = vlc.stream( "http://de1.api.radio-browser.info/json/servers" ):read( 100000 )
+	end
+	for server in tmp:gmatch '"ip"%s*:%s*"[%d%.]+"%s*,%s*"name"%s*:%s*"([^"]+)"' do
 		table.insert( servers, server )
 	end
 	
 	tracks = {}
+	list_wgt = nil
 	d = vlc.dialog("Radio-Browser.info (Search)")
 
 	d:add_label( "Name (the shorter, the more):", 1, 1, 1, 1)
@@ -197,7 +202,7 @@ function activate()
 	tags = d:add_text_input( "TAG0,TAG 1,LONG TAG 2,#TAG_3", 2, 2, 2, 1)
 
 	button = d:add_button("Search", main, 2, 6, 2, 1)
-	button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
+	button_c = d:add_button("Close", close, 1, 6, 1, 1)
 	d:show()
 	
 	d:update()
@@ -207,7 +212,7 @@ function activate()
 	d:update()
 	language = add_dropdown(d, "languages", 5)
 	
-	d:add_image("/home/aj/.local/share/vlc/lua/extensions/Radio-Browser.png", 4, 1, 1, 6)
+	d:add_image("/PATH/TO/YOUR/Radio-Browser.png", 4, 1, 1, 6)
 end
 
 -- Getting the HTML search string with nice "&"s to be placed after "...search?"
@@ -258,21 +263,36 @@ function deactivate()
 	end
 end
 
+function meta_changed()
+	vlc.deactivate()
+end
+
 function enqueue()
-	vlc.playlist.enqueue( tracks )
-	close()
+	local final = {}
+	for k, _ in pairs( list_wgt:get_selection() ) do
+		table.insert( final, tracks[k] )
+	end
+	if nil == next(final) then
+		vlc.playlist.enqueue( tracks )
+	else
+		vlc.playlist.enqueue( final )
+	end
 end
 
 function mainf()
 	d:del_widget( button_f )
+	if list_wgt then
+		d:del_widget( list_wgt )
+		list_wgt = nil
+	end
 	main()
 end
 -- Let's check for too large searches
 function main()
 	if "" == get_strg() then
 		d:del_widget( button )
-		button = d:add_button("Empty searches produce many results and take long! ... CHANGE or/and CONTINUE?", mainer, 2, 6, 2, 1)
-		button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
+		button = d:add_button("Empty searches may timeout or fail! ... CHANGE or/and CONTINUE?", mainer, 2, 6, 2, 1)
+		button_c = d:add_button("Close", close, 1, 6, 1, 1)
 	else
 		mainer()
 	end
@@ -288,6 +308,7 @@ function mainer()
 	local csv = csv_request( "stations/search" .. get_strg():gsub("^&", "?") )
 	tmp = csv:readline()
 	if tmp then
+		list_wgt = d:add_list(1, 7, 4, 1)
 		local size = 1
 		local headers = {}
 		for i, head in ipairs( ParseCSVLine(tmp) ) do
@@ -334,19 +355,21 @@ function mainer()
 				arturl = line[headers["favicon"]],
 				genre = line[headers["tags"]]
 			} )
-
+			
 			k = k + 1
+			list_wgt:add_value((line[headers["name"]] .. "  (" .. bstrg:gsub("^ +", ""):gsub("^0$", "?") .. " kbps / " .. line[headers["codec"]] .. " / " .. line[headers["countrycode"]]):gsub(" +/ +/ +", " / ") ..  " ... " .. line[headers["homepage"]]:gsub("/$", "") .. ")", k)
+			
 			tmp = csv:readline()
 		end
 		
 		d:del_widget( search )
 		button = d:add_button( "Change and Retry?", mainf, 2, 6, 1, 1)
-		button_f = d:add_button( "Found ... " .. k .. " ... Add?", enqueue, 3, 6, 1, 1)
-		button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
+		button_f = d:add_button( "Found: " .. k .. ". Add (selected)?", enqueue, 3, 6, 1, 1)
+		button_c = d:add_button("Close", close, 1, 6, 1, 1)
 	else
 		d:del_widget( search )
 		button = d:add_button( "Nothing found! ... Try with different parameters? ... Change and Retry!", main, 2, 6, 2, 1)
-		button_c = d:add_button("Cancel", close, 1, 6, 1, 1)
+		button_c = d:add_button("Close", close, 1, 6, 1, 1)
 	end
 	
 end
