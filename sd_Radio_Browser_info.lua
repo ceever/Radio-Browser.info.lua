@@ -1,6 +1,6 @@
 --[[
 
- Radio-Browser.info 0.59 add-on/lua script for VLC (Service Discovery / Internet)
+ Radio-Browser.info 0.591 add-on/lua script for VLC (Service Discovery / Internet)
 
  Copyright © 2022 Andrew Jackson (https://github.com/ceever)
 
@@ -30,7 +30,7 @@ In case you use LXQt, Lubuntu or Gnome, checkout my other project: https://githu
 Put the relevant .lua file(s) into the according subfolder (see below) of the VLC lua directory. VLC lua directory by default:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\
 * Windows (current user): %APPDATA%\VLC\lua\
-* Linux (all users): /usr/share/vlc/lua/
+* Linux (all users): /usr/lib/x86_64-linux-gnu/vlc/lua/ (was /usr/share/vlc/lua/ in the past)
 * Linux (current user): ~/.local/share/vlc/lua/
 (create directories if they don't exist)
 
@@ -74,7 +74,7 @@ ex_Radio-Browser_info.lua (Search window):
 function descriptor()
 	return { title="Radio-Browser.info",
 		description = "Radio-Browser.info (Service Discovery)",
-		version = "0.59",
+		version = "0.591",
 		author = "Andrew Jackson",
 		capabilities = {},
 		url = "https://github.com/ceever"
