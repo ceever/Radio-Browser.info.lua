@@ -1,6 +1,6 @@
 --[[
 
- Radio-Browser.info 0.59 add-on/lua script for VLC (playlist plugin for Service Discovery)
+ Radio-Browser.info 0.591 add-on/lua script for VLC (playlist plugin for Service Discovery)
 
  Copyright © 2020 Andrew Jacakson (https://github.com/ceever)
 
@@ -30,7 +30,7 @@ In case you use LXQt, Lubuntu or Gnome, checkout my other project: https://githu
 Put the relevant .lua file(s) into the according subfolder (see below) of the VLC lua directory. VLC lua directory by default:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\
 * Windows (current user): %APPDATA%\VLC\lua\
-* Linux (all users): /usr/share/vlc/lua/
+* Linux (all users): /usr/lib/x86_64-linux-gnu/vlc/lua/ (was /usr/share/vlc/lua/ in the past)
 * Linux (current user): ~/.local/share/vlc/lua/
 (create directories if they don't exist)
 
