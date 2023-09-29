@@ -69,7 +69,7 @@ Send me a mail or a ticket on github.
 Put the relevant .lua file(s) into the according subfolder (see below) of the VLC lua directory. VLC lua directory by default:
 * Windows (all users): %ProgramFiles%\VideoLAN\VLC\lua\
 * Windows (current user): %APPDATA%\VLC\lua\
-* Linux (all users): /usr/share/vlc/lua/
+* Linux (all users): /usr/lib/x86_64-linux-gnu/vlc/lua/ (was /usr/share/vlc/lua/ in the past)
 * Linux (current user): ~/.local/share/vlc/lua/
 (create directories if they don't exist)
 
