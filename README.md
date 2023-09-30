@@ -45,6 +45,9 @@ Send me a mail or a ticket on github.
 ---
 **UPDATES:**
 
+29.09.2023: v0.701/v0.591/v0.591 (ex/sd/pl)
+1. Updated documentation on where to put the lua files for all users. /usr/share/vlc/lua/ seems to break VLC.
+
 05.03.2023: v0.7 (ex)
 1. Added a search results list, to select specific stations and only add them to the VLC playlist.
 2. The search window remains open now after having added stations, so one can continue with another (different) search.
