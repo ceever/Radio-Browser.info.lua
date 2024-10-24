@@ -1,6 +1,6 @@
 ## Radio-Browser.info Addons for VLC
 ---
-Moved here: https://gitlab.com/radio_dude/radio-browser_vlc/
+Moved to: https://gitlab.com/radio_dude/radio-browser_vlc/
 
 ---
 **The Radio-Browser search window in VLC:**
